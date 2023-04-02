@@ -1,0 +1,22 @@
+"VertexlitGeneric"
+{
+	"$basetexture" 		"props/vaqxai/streetsigns/streetsign_basetexture_x512"
+	"$basetexture_org"		"props/vaqxai/streetsigns/streetsign_basetexture_x512" // Required to still get original tex after livematerial replaces the primary one
+	"$bumpmap"		"props/vaqxai/streetsigns/streetsign_bumpmap_x512"
+
+	"$envmap"		"env_cubemap"
+	"$envmapfresnel"		"1.0"
+
+	"$phong" 		"1"
+	"$phongexponent" 		"5"
+	"$phongboost"		"1.0"
+	"$phongfresnelranges"	"[0 0.5 1]"
+
+	// LiveTexture magic
+
+	Proxies {
+		LiveTexture {
+			resultVar $basetexture
+		}
+	}
+}
