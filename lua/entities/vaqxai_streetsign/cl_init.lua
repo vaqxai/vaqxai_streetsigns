@@ -25,11 +25,7 @@ surface.CreateFont("vStreetSigns_District", {
 function ENT:Draw()
     self:DrawModel()
 
-    if self.Invalidate or self:GetInvalidate() then
-        self.Invalidate = false
-        self:SetInvalidate(false)
-        self:UpdateRenderTarget()
-    end
+    self:UpdateRenderTarget()
 end
 
 function ENT:UpdateRenderTarget()
@@ -43,7 +39,7 @@ function ENT:UpdateRenderTarget()
         render.PushRenderTarget(self.LiveTexture)
         render.SuppressEngineLighting(true)
         render.OverrideAlphaWriteEnable(true, false)
-        render.Clear(0, 0, 0, 255, true, true)
+        render.Clear(255, 255, 255, 255, true, true)
 
         cam.Start2D()
             surface.SetMaterial(self.ProtoMat)
@@ -97,7 +93,6 @@ function ENT:Initialize()
     local texture = GetRenderTarget("LiveTexture_" .. texid, w, h)
 
     self.LiveTexture = texture
-    self.Invalidate = true
 end
 
 net.Receive("VaqxaiStreetSign_OpenMenu", function()
@@ -170,7 +165,6 @@ net.Receive("VaqxaiStreetSign_OpenMenu", function()
             self:SetText(val:sub(1, 3))
         end
         mp_ent:SetStreetNumber(self:GetText())
-        mp_ent.Invalidate = true
     end
 
     street_field.OnChange = function(self)
@@ -179,7 +173,6 @@ net.Receive("VaqxaiStreetSign_OpenMenu", function()
             self:SetText(val:sub(1, 19))
         end
         mp_ent:SetStreetName(self:GetText())
-        mp_ent.Invalidate = true
     end
 
     district_field.OnChange = function(self)
@@ -188,7 +181,6 @@ net.Receive("VaqxaiStreetSign_OpenMenu", function()
             self:SetText(val:sub(1, 19))
         end
         mp_ent:SetDistrictName(self:GetText())
-        mp_ent.Invalidate = true
     end
 
     model_panel:SetEntity(mp_ent)

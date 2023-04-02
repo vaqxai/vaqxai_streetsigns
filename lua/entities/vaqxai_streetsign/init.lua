@@ -40,7 +40,6 @@ net.Receive("VaqxaiStreetSign_Edit", function(ln, ply)
     ent:SetStreetName(street)
     ent:SetStreetNumber(number)
     ent:SetDistrictName(district)
-    ent:SetInvalidate(true)
     print("Street sign edited by " .. ply:Nick() .. " (" .. ply:SteamID() .. ")")
 end)
 

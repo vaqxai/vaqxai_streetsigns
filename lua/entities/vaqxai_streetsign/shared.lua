@@ -18,7 +18,6 @@ function ENT:SetupDataTables()
     self:NetworkVar("String", 0, "StreetNumber")
     self:NetworkVar("String", 1, "StreetName")
     self:NetworkVar("String", 2, "DistrictName")
-    self:NetworkVar("Bool", 0, "Invalidate")
 
     if SERVER then
         self:SetStreetNumber("")
@@ -27,11 +26,3 @@ function ENT:SetupDataTables()
     end
 
 end
-
-hook.Add("InitPostEntity", "VaqxaiStreetSign_InitPostEntity", function()
-    for k, v in pairs(ents.FindByClass("vaqxai_street_sign")) do
-        print("Creating StreetSign (" .. v:GetStreetName() .. " " .. v:GetStreetNumber() .. ")")
-        v.Invalidate = true
-        v:SetInvalidate(true)
-    end
-end)
